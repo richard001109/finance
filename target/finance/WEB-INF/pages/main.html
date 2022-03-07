@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>首页</title>
+<link rel="icon" href="favicon.ico" type="image/ico">
+<link href="static/css/bootstrap.min.css" rel="stylesheet">
+<link href="static/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="static/css/style.min.css" rel="stylesheet">
+</head>
+  
+<body>
+<div class="container-fluid p-t-15">
+  
+  <div class="row">
+    <div class="col-sm-6 col-md-3">
+      <div class="card bg-primary">
+        <div class="card-body clearfix">
+          <div class="pull-right">
+            <p class="h6 text-white m-t-0">今日收入</p>
+            <p class="h3 text-white m-b-0 fa-1-5x">102,125.00</p>
+          </div>
+          <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-currency-cny fa-1-5x"></i></span> </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-sm-6 col-md-3">
+      <div class="card bg-danger">
+        <div class="card-body clearfix">
+          <div class="pull-right">
+            <p class="h6 text-white m-t-0">今日支出</p>
+            <p class="h3 text-white m-b-0 fa-1-5x">920,000</p>
+          </div>
+          <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-account fa-1-5x"></i></span> </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-sm-6 col-md-3">
+      <div class="card bg-success">
+        <div class="card-body clearfix">
+          <div class="pull-right">
+            <p class="h6 text-white m-t-0">本月收入</p>
+            <p class="h3 text-white m-b-0 fa-1-5x">34,005,000</p>
+          </div>
+          <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-arrow-down-bold fa-1-5x"></i></span> </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-sm-6 col-md-3">
+      <div class="card bg-purple">
+        <div class="card-body clearfix">
+          <div class="pull-right">
+            <p class="h6 text-white m-t-0">本月支出</p>
+            <p class="h3 text-white m-b-0 fa-1-5x">1530000</p>
+          </div>
+          <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-comment-outline fa-1-5x"></i></span> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    
+    <div class="col-md-6"> 
+      <div class="card">
+        <div class="card-header">
+          <h4>本周支出</h4>
+        </div>
+        <div class="card-body">
+          <canvas id="chart-vbar-2" height="180px"></canvas>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-6"> 
+      <div class="card">
+        <div class="card-header">
+          <h4>本月支出</h4>
+        </div>
+        <div class="card-body">
+          <canvas id="chart-line-3" height="180px"></canvas>
+        </div>
+      </div>
+    </div> 
+</div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/main.min.js"></script>
+
+<!--图表插件-->
+<script type="text/javascript" src="js/Chart.js"></script>
+<script type="text/javascript">
+
+	new Chart($("#chart-line-3"), {
+		type: 'line',
+		data: {
+			labels: ["一月", "二月", "三月", "四月"],
+			datasets: [{
+				label: "收入",
+				fill: false,
+				backgroundColor: "#36a2eb",
+				borderColor: "#36a2eb",
+				borderWidth: 3,
+				pointRadius: 0,
+				data: [30, 25, 35, 23]
+			},
+			{
+				label: "支出",
+				fill: false,
+				borderColor: "#ff6384",
+				backgroundColor: "#ff6384",
+				borderWidth: 3,
+				pointRadius: 0,
+				data: [23, 29, 30, 33]
+			}]
+		},
+		options: {}
+	});
+	
+	new Chart($("#chart-vbar-2"), {
+	    type: 'bar',
+	    data: {
+	        labels: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+	        datasets: [{
+	            label: "收入",
+	            backgroundColor: "rgba(51,202,185,0.5)",
+	            borderColor: "rgba(0,0,0,0)",
+	            hoverBackgroundColor: "rgba(51,202,185,0.7)",
+	            hoverBorderColor: "rgba(0,0,0,0)",
+	            data: [10, 59, 80, 58, 20, 55, 40]
+	        },
+	        {
+	            label: "支出",
+	            backgroundColor: "rgba(243,245,246,0.8)",
+	            borderColor: "rgba(0,0,0,0)",
+	            hoverBackgroundColor: "rgba(238,239,240,1)",
+	            hoverBorderColor: "rgba(0,0,0,0)",
+	            data: [28, 48, 40, 19, 86, 27, 90]
+	        }]
+	    },
+	    options: {
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero: true
+	                }
+	            }]
+	        }
+	    }
+	});
+</script>
+</body>
+</html>
