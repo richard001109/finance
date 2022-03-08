@@ -88,15 +88,15 @@ body {
         </div>
         <div class="form-group has-feedback feedback-left row">
           <div class="col-xs-7">
-            <input type="text" name="captcha" class="form-control" placeholder="验证码">
+            <input type="text" name="captcha" id="verCode" class="form-control" placeholder="验证码">
             <span class="mdi mdi-check-all form-control-feedback" aria-hidden="true"></span>
           </div>
           <div class="col-xs-5">
-            <img src="static/images/captcha.png" class="pull-right" id="captcha" style="cursor: pointer;" onclick="this.src=this.src+'?d='+Math.random();" title="点击刷新" alt="captcha">
+            <img src="captcha" class="pull-right" id="captcha" style="cursor: pointer;" onclick="this.src=this.src+'?d='+Math.random();" title="点击刷新" alt="captcha">
           </div>
         </div>
         <div class="form-group">
-          <button class="btn btn-block btn-primary" type="button" onclick="location.href='index.html'">立即登录</button>
+          <button class="btn btn-block btn-primary" type="button" id="btn_login">立即登录</button>
         </div>
       </form>
     </div>
@@ -114,7 +114,31 @@ body {
 <script type="text/javascript" src="static/js/lightyear.js"></script>
 <script type="text/javascript" src="static/js/main.min.js"></script>
 <script type="text/javascript">
+// <!--登录按钮的点击事件-->
+  $("#btn_login").click(function (){
+  //  使用ajax发送请求
+    $.ajax({
+      type:"POST",//提交方式
+      url:"login",//后端服务器的地址
+      data:{
+        "userName":$("#username").val(),
+        "password":$("#password").val(),
+        "verCode":$("#verCode").val()
 
+      },
+      dataType:"json",
+      success:function (result){
+        console.log()
+        if (result.code==200){
+          lightyear.notify(result.msg,"success",100)
+          //登陆成功跳转到首页
+          window.location.href="index"
+        }else {
+          lightyear.notify(result.msg,"danger",100)
+        }
+      }
+    })
+  })
 </script>
 </body>
 </html>
