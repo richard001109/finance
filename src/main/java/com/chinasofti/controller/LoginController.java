@@ -65,4 +65,9 @@ public class LoginController {
     public String toMain(){
         return "main";
     }
+
+    @RequestMapping("/income")
+    public  String toIncome(){
+        return "income";
+    }
 }
