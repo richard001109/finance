@@ -1,5 +1,7 @@
 package com.chinasofti.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 /**
@@ -11,6 +13,7 @@ public class Income {
     private double incomeAmount;//金额
     private String incomeMode;//收款方式
     private String incomeRemarks;//描述
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date incomeDate;//日期
 
     public int getIncomeId() {
